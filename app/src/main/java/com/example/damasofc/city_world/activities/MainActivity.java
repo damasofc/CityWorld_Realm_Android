@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("rating",city.getRating());
                 intent.putExtra("description",city.getDescription());
                 intent.putExtra("image",city.getImgCity());
+                intent.putExtra("position",position);
+                intent.putExtra("FUENTE",1);
                 startActivity(intent);
                 finish();
             }
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                intent.putExtra("FUENTE",2);
                 startActivity(intent);
                 finish();
             }

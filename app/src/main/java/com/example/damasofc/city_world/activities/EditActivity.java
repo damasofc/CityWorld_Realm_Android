@@ -29,6 +29,7 @@ public class EditActivity extends AppCompatActivity {
     EditText editText_description;
     String name,image,description;
     Bundle data;
+    City cn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,15 +54,21 @@ public class EditActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isFull()){
                     realm.beginTransaction();
-                    City cn = new City(image,name,description,ratingBarCity.getRating());
                     if(data.isEmpty()){
+                        cn = new City(image,name,description,ratingBarCity.getRating());
                         realm.copyToRealm(cn);
+                        Toast.makeText(EditActivity.this, "Creado....", Toast.LENGTH_SHORT).show();
                     }
                     else {
+                        cn = realm.where(City.class).findAll().get(data.getInt("position"));
+                        cn.setRating(ratingBarCity.getRating());
+                        cn.setDescription(editText_description.getText().toString());
+                        cn.setNameCity(txtCityName.getText().toString());
+                        cn.setImgCity(editTextCityImage.getText().toString());
                         realm.copyToRealmOrUpdate(cn);
+                        Toast.makeText(EditActivity.this, "Actualizado....", Toast.LENGTH_SHORT).show();
                     }
                     realm.commitTransaction();
-                    Toast.makeText(EditActivity.this, "Creado....", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(EditActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -100,7 +107,7 @@ public class EditActivity extends AppCompatActivity {
         finish();
     }
     private void setData(Bundle b){
-        if(b.isEmpty()){
+        if(b.getInt("FUENTE")== 2){
 
         }else{
             cargarImagen(b.getString("image"));
