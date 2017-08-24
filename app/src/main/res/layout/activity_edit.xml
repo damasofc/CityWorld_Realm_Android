@@ -43,8 +43,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/txtCityName"
                 android:layout_marginTop="25dp"
-                android:maxLength="100"
-                android:maxLines="3"
+                android:maxLength="400"
+                android:maxLines="1"
                 android:hint="Image Link"/>
             <EditText
                 android:id="@+id/editText_description"

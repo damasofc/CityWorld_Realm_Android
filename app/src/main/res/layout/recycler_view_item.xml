@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    card_view:cardBackgroundColor="@android:color/tab_indicator_text"
+    card_view:cardBackgroundColor="@android:color/background_light"
     card_view:cardCornerRadius="4dp">
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
                 android:id="@+id/txtView_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="13dp"
+                android:layout_margin="10dp"
                 android:text="Delete"
                 android:textSize="20dp"
                 android:textColor="@android:color/holo_blue_dark"

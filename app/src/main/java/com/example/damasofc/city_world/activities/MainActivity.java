@@ -41,7 +41,13 @@ public class MainActivity extends AppCompatActivity {
         MyAdapter mAP = new MyAdapter(cities, R.layout.recycler_view_item, new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(City city, int position) {
-
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                intent.putExtra("name",city.getNameCity());
+                intent.putExtra("rating",city.getRating());
+                intent.putExtra("description",city.getDescription());
+                intent.putExtra("image",city.getImgCity());
+                startActivity(intent);
+                finish();
             }
         });
         rcView.setLayoutManager(lm);

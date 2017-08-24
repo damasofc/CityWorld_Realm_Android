@@ -28,7 +28,7 @@ public class EditActivity extends AppCompatActivity {
     FloatingActionButton fabSaveCity;
     EditText editText_description;
     String name,image,description;
-
+    Bundle data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +45,8 @@ public class EditActivity extends AppCompatActivity {
         buttonPreview = (Button) findViewById(R.id.buttonPreview);
         txtCityName = (EditText) findViewById(R.id.txtCityName);
         imgView = (ImageView) findViewById(R.id.imgView);
+        data = getIntent().getExtras();
+        setData(data);
 
         fabSaveCity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +54,12 @@ public class EditActivity extends AppCompatActivity {
                 if(isFull()){
                     realm.beginTransaction();
                     City cn = new City(image,name,description,ratingBarCity.getRating());
-                    realm.copyToRealm(cn);
+                    if(data.isEmpty()){
+                        realm.copyToRealm(cn);
+                    }
+                    else {
+                        realm.copyToRealmOrUpdate(cn);
+                    }
                     realm.commitTransaction();
                     Toast.makeText(EditActivity.this, "Creado....", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(EditActivity.this, MainActivity.class);
@@ -91,5 +98,16 @@ public class EditActivity extends AppCompatActivity {
         Intent intent = new Intent(EditActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+    private void setData(Bundle b){
+        if(b.isEmpty()){
+
+        }else{
+            cargarImagen(b.getString("image"));
+            txtCityName.setText(b.getString("name"));
+            editTextCityImage.setText(b.getString("image"));
+            editText_description.setText(b.getString("description"));
+            ratingBarCity.setRating(b.getFloat("rating"));
+        }
     }
 }
