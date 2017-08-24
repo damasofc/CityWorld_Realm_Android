@@ -2,6 +2,8 @@ package com.example.damasofc.city_world.adapter;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,11 +84,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     //TODO: Aca ira lo que sucedera cuando den click a DELETE
-                    realm.beginTransaction();
-                    city.deleteFromRealm();
-                    realm.commitTransaction();
-                    MyAdapter.this.notifyDataSetChanged();
-                    Toast.makeText(context, "Ha sido Borrado......", Toast.LENGTH_SHORT).show();
+                    showAlertDialog("Delete City","Are you sure you want to delete " + city.getNameCity(),
+                            city);
                 }
             });
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -102,5 +101,32 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public interface  OnItemClickListener{
         void onItemClick(City city, int position);
+    }
+
+    public void showAlertDialog(String title, String message, final City city){
+        AlertDialog.Builder ad = new AlertDialog.Builder(context);
+        if(title!= null) ad.setTitle(title);
+        if(message!= null) ad.setMessage(message);
+
+        View viewInflated = LayoutInflater.from(context).inflate(R.layout.alert_dialog,null);
+        ad.setView(viewInflated);
+        ad.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                realm.beginTransaction();
+                city.deleteFromRealm();
+                realm.commitTransaction();
+                MyAdapter.this.notifyDataSetChanged();
+                Toast.makeText(context, "Ha sido Borrado......", Toast.LENGTH_SHORT).show();
+            }
+        });
+        ad.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        ad.create().show();
+
     }
 }

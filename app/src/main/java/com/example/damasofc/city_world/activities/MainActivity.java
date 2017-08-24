@@ -63,5 +63,17 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        setHideShowFAB();
+    }
+    private void setHideShowFAB() {
+        rcView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0)
+                    fab_add.hide();
+                else if (dy < 0)
+                    fab_add.show();
+            }
+        });
     }
 }
