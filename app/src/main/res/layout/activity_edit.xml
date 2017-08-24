@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.damasofc.city_world.activities.EditActivity">
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/imgView"
+        android:numColumns="1"
+        android:rowCount="4"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+            <EditText
+                android:id="@+id/txtCityName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name:" />
+            <Button
+                android:id="@+id/buttonPreview"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/editTextCityImage"
+                android:layout_marginTop="6dp"
+                android:background="@android:drawable/ic_menu_view"
+                android:gravity="right" />
+            <EditText
+                android:id="@+id/editTextCityImage"
+                android:layout_width="270dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/txtCityName"
+                android:layout_marginTop="25dp"
+                android:maxLength="100"
+                android:maxLines="3"
+                android:hint="Image Link"/>
+            <EditText
+                android:id="@+id/editText_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:hint="Description"
+                android:layout_below="@id/editTextCityImage"/>
+            <RatingBar
+                android:id="@+id/ratingBarCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"/>
+
+        </RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_SaveCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="15dp"
+            android:src="@android:drawable/ic_menu_save"/>
+
+    </FrameLayout>
+</RelativeLayout>
