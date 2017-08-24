@@ -54,7 +54,7 @@ public class EditActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isFull()){
                     realm.beginTransaction();
-                    if(data.isEmpty()){
+                    if(data.getInt("FUENTE")== 2){
                         cn = new City(image,name,description,ratingBarCity.getRating());
                         realm.copyToRealm(cn);
                         Toast.makeText(EditActivity.this, "Creado....", Toast.LENGTH_SHORT).show();
