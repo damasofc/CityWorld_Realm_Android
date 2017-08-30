@@ -27,7 +27,13 @@
             android:layout_height="wrap_content"
             android:text="San Pedro Sula"
             android:layout_gravity="bottom"
-            android:layout_margin="4dp"
+            android:paddingLeft="10dp"
+            android:shadowColor="#000"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="5"
+            android:textStyle="bold"
+            android:layout_marginTop="-24dp"
             android:textColor="@android:color/white"/>
     </FrameLayout>
 
